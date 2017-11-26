@@ -1,0 +1,65 @@
+grammar TableTests
+  rule test_list
+    line+
+  end
+
+  rule line
+    test
+  end
+
+#  rule comment
+#    '#' ( !"\n" ( . / "\n" ) )* <Comment>
+#  end
+
+  rule test
+    indentation output inputs <Test>
+  end
+
+  rule output
+    value
+  end
+
+  rule inputs
+    value+ <InputList>
+  end
+
+  rule value
+    (bool / nil / array / string / float / int) whitespace? <Value>
+  end
+
+  rule nil
+    'null' <NullLiteral>
+  end
+
+  rule bool
+    'true' / 'false' <BoolLiteral>
+  end
+
+  rule array
+    '[' (array / value*) ']' <Array>
+  end
+
+  rule string
+    '"' ([^"\\] / "\\" . )* '"' <StringLiteral>
+  end
+
+  rule float
+    numeric_sign? [0-9]+ '.' [0-9]+ <FloatLiteral>
+  end
+
+  rule int
+    numeric_sign? [0-9]+ <IntLiteral>
+  end
+
+  rule numeric_sign
+    '-' / '+' <NumericSign>
+  end
+
+  rule whitespace
+    [\s]+ <Whitespace>
+  end
+
+  rule indentation
+    '  ' <Indentation>
+  end
+end

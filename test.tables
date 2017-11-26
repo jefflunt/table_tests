@@ -1,0 +1,7 @@
+  true        false       null
+  1234        5678        -1234
+  123         456         789
+  1.23        4.56        7.89
+  "foo"       "bar"       "baz"
+  null        null        null
+  ["foo" 2]   [1.23 -5]   [null]
